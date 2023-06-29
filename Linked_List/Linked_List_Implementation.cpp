@@ -100,6 +100,27 @@ void deleteNode(Node *&head, int position)
     }
 }
 
+void reverse(Node *&head, Node *curr, Node *prev)
+{
+    // base case
+    if (curr == NULL)
+    {
+        head = prev;
+        return;
+    }
+    Node *forward = curr->next;
+    reverse(head, forward, prev);
+    curr->next = prev;
+}
+
+Node *reverseLinkedlist(Node *head)
+{
+    Node *curr = head;
+    Node *prev = NULL;
+    reverse(head, curr, prev);
+    return head;
+}
+
 // print the linked list
 void print(Node *&head)
 {
@@ -139,5 +160,7 @@ int main()
     deleteNode(head, 1);
     print(head);
     deleteNode(head, 4);
+    print(head);
+    reverseLinkedlist(head);
     print(head);
 }
